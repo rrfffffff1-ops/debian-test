@@ -1,0 +1,31 @@
+name: V6 News Generator
+
+on:
+  schedule:
+    - cron: "0 6,12,18 * * *"
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run V6 News Generator via Blackbox CLI
+        id: generate
+        run: |
+          chmod +x news-generator/scripts/fetch-news.sh
+          bash news-generator/scripts/fetch-news.sh 2>&1
+
+      - name: Upload Generated Content
+        uses: actions/upload-artifact@v4
+        with:
+          name: news-content-${{ github.run_id }}
+          path: news-generator/output/
+          retention-days: 30
