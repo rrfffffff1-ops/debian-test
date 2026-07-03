@@ -1,0 +1,308 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #fff;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #ff6b35;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+button {
+    background: linear-gradient(45deg, #ff6b35, #ff8c42);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#status {
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffd700;
+    min-width: 200px;
+    text-align: center;
+}
+
+.visualization {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.section-title {
+    text-align: center;
+    color: #ff6b35;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.array-section, .tree-section {
+    flex: 1;
+    min-width: 300px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.array-container, .tree-container {
+    min-height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.array-element {
+    background: linear-gradient(135deg, #000000, #1a1a1a);
+    border: 2px solid #ff6b35;
+    border-radius: 8px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #ff6b35;
+    box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.array-element.active {
+    animation: pulse 1.5s infinite;
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.7);
+    transform: scale(1.05);
+}
+
+.array-element.processing {
+    background: linear-gradient(135deg, #ff6b35, #ff8c42);
+    color: #000;
+    animation: bounce 0.6s ease;
+}
+
+.array-element.added {
+    background: linear-gradient(135deg, #000000, #1a1a1a);
+    border-color: #4CAF50;
+    color: #4CAF50;
+    animation: fadeIn 0.5s ease;
+}
+
+.tree-node {
+    background: linear-gradient(135deg, #000000, #1a1a1a);
+    border: 2px solid #ff6b35;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px;
+    color: #ff6b35;
+    box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tree-node.active {
+    animation: pulse 1.5s infinite;
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.7);
+    transform: scale(1.1);
+}
+
+.tree-node.processing {
+    background: linear-gradient(135deg, #ff6b35, #ff8c42);
+    color: #000;
+    animation: bounce 0.6s ease;
+}
+
+.tree-node.added {
+    background: linear-gradient(135deg, #000000, #1a1a1a);
+    border-color: #4CAF50;
+    color: #4CAF50;
+    animation: fadeIn 0.5s ease;
+}
+
+.tree-connector {
+    position: absolute;
+    background: #ff6b35;
+    z-index: -1;
+}
+
+.arrow-section {
+    text-align: center;
+    padding: 20px;
+    min-width: 100px;
+}
+
+.arrow-label {
+    color: #ff6b35;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.visual-arrow {
+    width: 60px;
+    height: 60px;
+    border: 3px solid #ff6b35;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    animation: rotateArrow 2s linear infinite;
+}
+
+.visual-arrow::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 20px;
+    background: #ff6b35;
+    transform: rotate(45deg);
+    top: -10px;
+    left: 50%;
+    transform-origin: bottom;
+    animation: arrowPulse 2s ease-in-out infinite;
+}
+
+.array-description, .tree-description {
+    text-align: center;
+    color: #ccc;
+    font-size: 14px;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.explanation {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    margin-top: 20px;
+}
+
+.explanation h3 {
+    color: #ff6b35;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.explanation ol {
+    padding-left: 25px;
+    color: #ddd;
+}
+
+.explanation li {
+    margin-bottom: 10px;
+    line-height: 1.8;
+}
+
+.explanation ul {
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.explanation li ul li {
+    margin-bottom: 5px;
+    color: #bbb;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(255, 107, 53, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 107, 53, 0); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: scale(0.5); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes rotateArrow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes arrowPulse {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .visualization {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .array-section, .tree-section {
+        width: 100%;
+        max-width: 400px;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #status {
+        margin-top: 10px;
+    }
+}

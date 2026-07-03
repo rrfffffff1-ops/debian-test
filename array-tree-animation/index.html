@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array and Tree Construction Animation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Array to Binary Tree Construction</h1>
+        
+        <div class="controls">
+            <button id="startBtn">Start Animation</button>
+            <button id="resetBtn">Reset</button>
+            <span id="status">Ready to start</span>
+        </div>
+        
+        <div class="visualization">
+            <div class="array-section">
+                <h2>Array Storage</h2>
+                <div class="array-container" id="arrayContainer">
+                    <!-- Array elements will be dynamically added here -->
+                </div>
+                <p class="array-description">Data stored in contiguous memory locations</p>
+            </div>
+            
+            <div class="arrow-section">
+                <div class="arrow-label">Tree Construction Process</div>
+                <div class="visual-arrow" id="constructionArrow"></div>
+            </div>
+            
+            <div class="tree-section">
+                <h2>Binary Tree Construction</h2>
+                <div class="tree-container" id="treeContainer">
+                    <!-- Tree will be dynamically built here -->
+                </div>
+                <p class="tree-description">Binary tree built from array using level-order insertion</p>
+            </div>
+        </div>
+        
+        <div class="explanation">
+            <h3>How It Works:</h3>
+            <ol>
+                <li>Data elements are stored sequentially in an array (contiguous memory)</li>
+                <li>A binary tree is constructed from the array using level-order insertion</li>
+                <li>For array index i:</li>
+                <ul>
+                    <li>Left child is at index 2*i + 1</li>
+                    <li>Right child is at index 2*i + 2</li>
+                </ul>
+                <li>This creates a complete binary tree structure</li>
+            </ol>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
